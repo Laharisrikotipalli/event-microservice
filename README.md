@@ -1,4 +1,4 @@
-# 🚀 Kafka Event Microservice
+# Kafka Event Microservice
 
 A production-ready event-driven microservice built using **Node.js, Apache Kafka, and PostgreSQL**.
 
@@ -14,17 +14,19 @@ This service:
 - Includes unit and integration tests
 
 This project demonstrates real-world backend engineering practices for event-driven architectures.
-# 🏗 Architecture Overview
+
+---
+#  Architecture Overview
 
 This project follows an **event-driven microservice architecture** using Apache Kafka.
-## 📊 Architecture Diagram
+##  Architecture Diagram
 
 The following diagram illustrates the event-driven architecture of the system:
 
 ![Kafka Event Microservice Architecture](docs/architecture.png)
 
-
-## 🔁 Event Flow
+---
+##  Event Flow
 
 1. Client sends HTTP request to `POST /events/generate`
 2. Express API publishes a `UserEvent` to Kafka topic `user-activity-events`
@@ -34,13 +36,7 @@ The following diagram illustrates the event-driven architecture of the system:
 
 ---
 
-## 📊 Architecture Diagram
-
-![Architecture Diagram](docs/architecture.png)
-
----
-
-## ⚙ System Components
+##  System Components
 
 - **Express API** – REST endpoints
 - **Kafka Producer** – Publishes events
@@ -48,7 +44,8 @@ The following diagram illustrates the event-driven architecture of the system:
 - **Kafka Consumer Group** – `user-activity-consumer-group`
 - **PostgreSQL Database** – Stores processed events
 - **Dead Letter Queue (DLQ)** – `user-activity-events-dlq`
-# 🛠 Tech Stack
+----
+#  Tech Stack
 
 - Node.js (Express)
 - Apache Kafka (KafkaJS)
@@ -56,16 +53,17 @@ The following diagram illustrates the event-driven architecture of the system:
 - Docker & Docker Compose
 - Jest (Unit Testing)
 - Supertest (API Testing)
-# 📦 Features Implemented
+-----
+# Features Implemented
 
-## ✅ Event Publishing
+##  Event Publishing
 
 - Endpoint: `POST /events/generate`
 - Publishes event to Kafka topic `user-activity-events`
 - Generates UUID-based `eventId`
 - Includes ISO timestamp
 - Accepts structured JSON payload
-
+---
 ### UserEvent Structure
 
 ```json
@@ -80,7 +78,7 @@ The following diagram illustrates the event-driven architecture of the system:
 
 ---
 
-## ✅ Kafka Consumer Group
+##  Kafka Consumer Group
 
 - Subscribes to topic `user-activity-events`
 - Member of `user-activity-consumer-group`
@@ -89,7 +87,7 @@ The following diagram illustrates the event-driven architecture of the system:
 
 ---
 
-## ✅ Idempotency
+##  Idempotency
 
 Duplicate events are handled safely using:
 
@@ -101,7 +99,7 @@ This guarantees that events with the same `eventId` are processed only once.
 
 ---
 
-## ✅ Dead Letter Queue (DLQ)
+##  Dead Letter Queue (DLQ)
 
 If event processing fails (e.g., DB error, malformed message):
 
@@ -112,7 +110,7 @@ This ensures fault isolation and production readiness.
 
 ---
 
-## ✅ PostgreSQL Persistence
+##  PostgreSQL Persistence
 
 - Events are stored in the `events` table
 - Containerized PostgreSQL
@@ -121,7 +119,7 @@ This ensures fault isolation and production readiness.
 
 ---
 
-## ✅ Graceful Shutdown
+##  Graceful Shutdown
 
 Handles:
 
@@ -137,7 +135,7 @@ Safely disconnects:
 
 ---
 
-## ✅ Health Check Endpoint
+##  Health Check Endpoint
 
 ```
 GET /health
@@ -150,7 +148,7 @@ Response:
   "status": "UP"
 }
 ```
-# 🗄 Database Schema
+#  Database Schema
 
 ```sql
 CREATE TABLE IF NOT EXISTS events (
@@ -161,9 +159,9 @@ CREATE TABLE IF NOT EXISTS events (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
-# 🌐 API Endpoints
+#  API Endpoints
 
-## 1️⃣ Generate Event
+## 1️ Generate Event
 
 POST `/events/generate`
 
@@ -190,7 +188,7 @@ POST `/events/generate`
 
 ---
 
-## 2️⃣ View Processed Events
+## 2️ View Processed Events
 
 GET `/events/processed`
 
@@ -210,10 +208,12 @@ Returns:
 
 ---
 
-## 3️⃣ Health Check
+## 3️ Health Check
 
 GET `/health`
-# 🐳 Docker Setup
+
+---
+#  Docker Setup
 
 ## Run Application
 
@@ -233,7 +233,8 @@ All services include:
 - Health checks
 - Dependency management
 - Restart policies
-# 🔧 Environment Variables
+----
+#  Environment Variables
 
 All configurations are managed via environment variables:
 
@@ -250,7 +251,8 @@ DB_PASSWORD=postgres
 DB_NAME=eventsdb
 DB_PORT=5432
 ```
-# 🧪 Testing
+---
+# Testing
 
 Run all tests:
 
@@ -260,9 +262,9 @@ npm test
 
 Test Coverage Includes:
 
-- ✅ Producer unit tests
-- ✅ Consumer idempotency tests
-- ✅ API integration tests
+-  Producer unit tests
+-  Consumer idempotency tests
+-  API integration tests
 
 Expected Output:
 
@@ -271,7 +273,8 @@ PASS tests/producer.test.js
 PASS tests/consumer.test.js
 PASS tests/app.test.js
 ```
-# 🔮 Future Improvements
+----
+#  Future Improvements
 
 - Request validation (Joi / Zod)
 - Structured logging (Winston / Pino)
