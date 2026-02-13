@@ -10,7 +10,7 @@ let consumer
 let dlqProducer
 
 async function startConsumer() {
-  // Do not start Kafka in test mode
+
   if (process.env.NODE_ENV === "test") return
 
   consumer = kafka.consumer({

@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== "test") {
 }
 
 
-// -------------------- ROUTES -------------------- //
+
 
 app.get("/", (req, res) => {
   res.send("Kafka Event Microservice Running")
@@ -75,7 +75,6 @@ if (require.main === module) {
   })
 }
 
-// -------------------- GRACEFUL SHUTDOWN -------------------- //
 
 async function shutdown() {
   console.log("Shutting down gracefully...")

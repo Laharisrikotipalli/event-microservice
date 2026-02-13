@@ -19,7 +19,7 @@ async function publishEvent(userId, eventType, payload = {}) {
     userId,
     eventType,
     timestamp: new Date().toISOString(),
-    payload, // ✅ ADDED
+    payload, 
   }
 
   await producer.send({
